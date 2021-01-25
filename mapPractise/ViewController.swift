@@ -165,10 +165,14 @@ extension ViewController:MKMapViewDelegate{
     
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        let pin = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pinIdentifier")
-      
-        pin.animatesDrop = true
-        pin.pinTintColor = #colorLiteral(red: 0.1960784346, green: 0.3411764801, blue: 0.1019607857, alpha: 1)
+        
+      //  let pin = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pinIdentifier")
+       // pin.animatesDrop = true
+        //pin.pinTintColor = #colorLiteral(red: 0.1960784346, green: 0.3411764801, blue: 0.1019607857, alpha: 1)
+        
+        // custom picture for annotation
+        let pin = map.dequeueReusableAnnotationView(withIdentifier: "pinIDentifier") ?? MKPinAnnotationView()
+        pin.image = UIImage(named: "ic_place")
         pin.canShowCallout = true
         pin.rightCalloutAccessoryView = UIButton(type: .infoDark)
         return pin
