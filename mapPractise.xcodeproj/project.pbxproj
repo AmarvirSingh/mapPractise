@@ -15,7 +15,8 @@
 		EE45388B25BEFA4800288772 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE45388925BEFA4800288772 /* LaunchScreen.storyboard */; };
 		EE45389625BEFA4800288772 /* mapPractiseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE45389525BEFA4800288772 /* mapPractiseTests.swift */; };
 		EE4538A125BEFA4900288772 /* mapPractiseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4538A025BEFA4900288772 /* mapPractiseUITests.swift */; };
-		EEAD7F8F25BF0A8D00197C5D /* File.plist in Resources */ = {isa = PBXBuildFile; fileRef = EEAD7F8E25BF0A8D00197C5D /* File.plist */; };
+		EEAD7F9225BF16FF00197C5D /* Places.plist in Resources */ = {isa = PBXBuildFile; fileRef = EEAD7F9025BF16FF00197C5D /* Places.plist */; };
+		EEAD7F9325BF16FF00197C5D /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAD7F9125BF16FF00197C5D /* Place.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +51,8 @@
 		EE45389C25BEFA4800288772 /* mapPractiseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mapPractiseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE4538A025BEFA4900288772 /* mapPractiseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapPractiseUITests.swift; sourceTree = "<group>"; };
 		EE4538A225BEFA4900288772 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EEAD7F8E25BF0A8D00197C5D /* File.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = File.plist; sourceTree = "<group>"; };
+		EEAD7F9025BF16FF00197C5D /* Places.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Places.plist; sourceTree = "<group>"; };
+		EEAD7F9125BF16FF00197C5D /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,9 +107,10 @@
 				EE45388025BEFA4400288772 /* SceneDelegate.swift */,
 				EE45388225BEFA4400288772 /* ViewController.swift */,
 				EE45388425BEFA4400288772 /* Main.storyboard */,
-				EEAD7F8E25BF0A8D00197C5D /* File.plist */,
 				EE45388725BEFA4800288772 /* Assets.xcassets */,
 				EE45388925BEFA4800288772 /* LaunchScreen.storyboard */,
+				EEAD7F9125BF16FF00197C5D /* Place.swift */,
+				EEAD7F9025BF16FF00197C5D /* Places.plist */,
 				EE45388C25BEFA4800288772 /* Info.plist */,
 			);
 			path = mapPractise;
@@ -235,7 +238,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EEAD7F8F25BF0A8D00197C5D /* File.plist in Resources */,
+				EEAD7F9225BF16FF00197C5D /* Places.plist in Resources */,
 				EE45388B25BEFA4800288772 /* LaunchScreen.storyboard in Resources */,
 				EE45388825BEFA4800288772 /* Assets.xcassets in Resources */,
 				EE45388625BEFA4400288772 /* Main.storyboard in Resources */,
@@ -266,6 +269,7 @@
 				EE45388325BEFA4400288772 /* ViewController.swift in Sources */,
 				EE45387F25BEFA4400288772 /* AppDelegate.swift in Sources */,
 				EE45388125BEFA4400288772 /* SceneDelegate.swift in Sources */,
+				EEAD7F9325BF16FF00197C5D /* Place.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

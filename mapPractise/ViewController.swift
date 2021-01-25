@@ -13,6 +13,8 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var map: MKMapView!
     
+    let places = Place.getPlaces()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -22,7 +24,7 @@ class ViewController: UIViewController {
         let longitude:CLLocationDegrees = -79.38
         
         
-        displayLocation(latitude: latitude, longitude: longitude, title: "toronto", subTitle: "you are here")
+        //displayLocation(latitude: latitude, longitude: longitude, title: "toronto", subTitle: "you are here")
         
         let dtg = UILongPressGestureRecognizer(target: self, action: #selector(doubleTapped))
         
@@ -30,7 +32,14 @@ class ViewController: UIViewController {
         
         doubleTap()
         
+        addAnnotationForPlaces()
         
+        
+    }
+    
+    
+    func addAnnotationForPlaces(){
+        map.addAnnotations(places)
     }
     
     func removePin(){
