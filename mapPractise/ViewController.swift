@@ -28,11 +28,13 @@ class ViewController: UIViewController {
         
         let dtg = UILongPressGestureRecognizer(target: self, action: #selector(doubleTapped))
         
-        map.addGestureRecognizer(dtg)
+        //map.addGestureRecognizer(dtg)
         
         doubleTap()
         
         addAnnotationForPlaces()
+        
+        map.delegate = self
         
         
     }
@@ -40,6 +42,11 @@ class ViewController: UIViewController {
     
     func addAnnotationForPlaces(){
         map.addAnnotations(places)
+        
+        let overlay = places.map{
+            MKCircle(center: $0.coordinate, radius: 3000)
+        }
+        map.addOverlays(overlay)
     }
     
     func removePin(){
@@ -122,3 +129,17 @@ class ViewController: UIViewController {
 
 }
 
+extension ViewController:MKMapViewDelegate{
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        if overlay is MKCircle {
+            let rend = MKCircleRenderer(overlay: overlay)
+            rend.fillColor = UIColor.blue.withAlphaComponent(0.5) // circle color
+            rend.strokeColor = UIColor.blue // circle boundary color
+            rend.lineWidth = 2  // line width
+            return rend
+        }
+        return MKOverlayRenderer()
+    }
+    
+}
