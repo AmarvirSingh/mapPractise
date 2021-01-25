@@ -9,9 +9,11 @@
 import UIKit
 import MapKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, CLLocationManagerDelegate {
 
     @IBOutlet weak var map: MKMapView!
+    
+    var locationManager = CLLocationManager()
     
     let places = Place.getPlaces()
     
@@ -23,6 +25,20 @@ class ViewController: UIViewController {
         let latitude: CLLocationDegrees = 43.64
         let longitude:CLLocationDegrees = -79.38
         
+        map.isZoomEnabled = false // disable or enable zomming functionality
+        
+        locationManager.delegate = self
+        
+        // defining the accuracy og the location
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        
+        // request to access location from ythe user
+        
+        locationManager.requestWhenInUseAuthorization()
+        
+        // laststep for user location
+        
+        locationManager.startUpdatingLocation()
         
         //displayLocation(latitude: latitude, longitude: longitude, title: "toronto", subTitle: "you are here")
         
@@ -30,7 +46,7 @@ class ViewController: UIViewController {
         
         map.addGestureRecognizer(dtg)
         
-        //doubleTap()
+        doubleTap()
         
         addAnnotationForPlaces()
         
@@ -41,6 +57,18 @@ class ViewController: UIViewController {
         
        
         
+        
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let userLocation = locations[0]
+        
+        let latitude = userLocation.coordinate.latitude
+        let longitude = userLocation.coordinate.longitude
+        
+   
+        
+        displayLocation(latitude: latitude, longitude: longitude, title: "Your Location", subTitle: "You are here")
         
     }
     
@@ -65,11 +93,23 @@ class ViewController: UIViewController {
         map.addOverlays(overlay)
     }
     
-    func removePin(){
+    func removePinDestination(){
         for anno in map.annotations{
-            map.removeAnnotation(anno)
+            if anno.title == "destination"{
+                map.removeAnnotation(anno)
+            }
         }
     }
+    
+    func removePinFav(){
+        for anno in map.annotations{
+            if anno.title == "My Favorite"{
+                map.removeAnnotation(anno)
+            }
+        }
+    }
+    
+  
     
     
     
@@ -85,8 +125,8 @@ class ViewController: UIViewController {
     }
     
     @objc func secondTap(gesture:UITapGestureRecognizer){
-        removePin()
-        
+    
+        removePinDestination()
         let touchPOint = gesture.location(in: map)
         let coordinate = map.convert(touchPOint, toCoordinateFrom: map)
         
@@ -102,6 +142,8 @@ class ViewController: UIViewController {
     
     
     @objc func doubleTapped(gesture:UIGestureRecognizer){
+        
+        removePinFav()
         let touchPoint = gesture.location(in: map)
         
         let coordinate = map.convert(touchPoint, toCoordinateFrom: map)
@@ -120,8 +162,8 @@ class ViewController: UIViewController {
                          title:String,
                          subTitle:String){
         
-        let latDelta:CLLocationDegrees = 0.05
-        let longDelta:CLLocationDegrees = 0.05
+        let latDelta:CLLocationDegrees = 0.025
+        let longDelta:CLLocationDegrees = 0.025
         
         let span = MKCoordinateSpan(latitudeDelta: latDelta, longitudeDelta: longDelta)
         
