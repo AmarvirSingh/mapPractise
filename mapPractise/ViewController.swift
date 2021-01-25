@@ -28,9 +28,9 @@ class ViewController: UIViewController {
         
         let dtg = UILongPressGestureRecognizer(target: self, action: #selector(doubleTapped))
         
-        //map.addGestureRecognizer(dtg)
+        map.addGestureRecognizer(dtg)
         
-        doubleTap()
+        //doubleTap()
         
         addAnnotationForPlaces()
         
@@ -39,7 +39,13 @@ class ViewController: UIViewController {
         addPolyLine()
         
         
+       
+        
+        
     }
+    
+    
+
     
     func addPolyLine(){
         let coordinate = places.map{
@@ -157,4 +163,25 @@ extension ViewController:MKMapViewDelegate{
         return MKOverlayRenderer()
     }
     
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let pin = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pinIdentifier")
+      
+        pin.animatesDrop = true
+        pin.pinTintColor = #colorLiteral(red: 0.1960784346, green: 0.3411764801, blue: 0.1019607857, alpha: 1)
+        pin.canShowCallout = true
+        pin.rightCalloutAccessoryView = UIButton(type: .infoDark)
+        return pin
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        let alert = UIAlertController(title: "title", message: " this is message ", preferredStyle: .alert)
+        let cancelBtn = UIAlertAction(title: "cancelTitle", style: .cancel, handler: nil)
+        alert.addAction(cancelBtn)
+        present(alert, animated: true , completion: nil)
+        
+        
+        
+        
+    }
 }
