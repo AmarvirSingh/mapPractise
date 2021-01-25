@@ -36,7 +36,17 @@ class ViewController: UIViewController {
         
         map.delegate = self
         
+        addPolyLine()
         
+        
+    }
+    
+    func addPolyLine(){
+        let coordinate = places.map{
+            $0.coordinate
+        }
+        let poly = MKPolyline(coordinates: coordinate, count: coordinate.count)
+        map.addOverlay(poly)
     }
     
     
@@ -137,6 +147,11 @@ extension ViewController:MKMapViewDelegate{
             rend.fillColor = UIColor.blue.withAlphaComponent(0.5) // circle color
             rend.strokeColor = UIColor.blue // circle boundary color
             rend.lineWidth = 2  // line width
+            return rend
+        }else if overlay is MKPolyline{
+            let rend = MKPolylineRenderer(overlay: overlay)
+            rend.strokeColor = #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)
+            rend.lineWidth = 1
             return rend
         }
         return MKOverlayRenderer()
